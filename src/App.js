@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from './store';
 import ApplicationNavigator from './navigators/Application';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import './translations';
 const App = () => (
   <Provider store={store}>
@@ -15,7 +17,9 @@ const App = () => (
      * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
      */}
     <PersistGate loading={null} persistor={persistor}>
-      <ApplicationNavigator />
+      <SafeAreaProvider>
+        <ApplicationNavigator />
+      </SafeAreaProvider>
     </PersistGate>
   </Provider>
 );
